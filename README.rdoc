@@ -1,0 +1,5 @@
+= BadEncodings
+
+http://github.com/adamsalter/bad_encodings-ruby19/tree/master
+
+Small gem that tries to make the task of finding bad ruby encodings in your project a little easier. 'find_bad_encodings .'

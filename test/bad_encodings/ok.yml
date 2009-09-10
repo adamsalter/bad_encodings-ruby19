@@ -1,0 +1,4 @@
+# shouldn't give error since yaml files are 'OK'
+
+test:
+  tëst: 'here'
