@@ -33,6 +33,11 @@ Known Bugs
 
 None. (well actually the detection of ruby encoding is pretty simple and probably not 100% accurate, certainly works for everything I've tried it on... patches welcome.)
 
+
+Follow me on:  
+>  Twitter: [twitter.com/adamsalter](http://twitter.com/adamsalter)  
+>  Github: [github.com/adamsalter](http://github.com/adamsalter)
+
 Copyright (c) 2009 Adam @ [Codebright.net][cb], released under the MIT license
 
 [cb]:http://codebright.net "http://codebright.net"
