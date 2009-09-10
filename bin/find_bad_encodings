@@ -1,5 +1,21 @@
 #!/usr/bin/env ruby
 require 'fileutils'
+require '../lib/bad_encodings'
 
-working_directory = FileUtils.pwd
+if ARGV[0] && File.exists?(ARGV[0])
+  dir = ARGV[0]
+else
+  raise ArgumentError, "must supply a directory"
+end
 
+raise ArgumentError, "Requires Ruby 1.9" unless RUBY_VERSION > '1.9'
+dir = File.expand_path(dir)
+bad_lines = BadEncodings.find_lines_in_path(dir)
+unless bad_lines.empty?
+  puts 'The following bad encodings were found:'
+  bad_lines.each do |line|
+    puts "[%s:%d]" % [line[0].sub(dir,ARGV[0]), line[1]]
+  end
+else
+  puts 'No bad encodings found'
+end
