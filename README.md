@@ -3,6 +3,8 @@ BadEncodings
 
 Small gem that tries to make the task of finding bad ruby encodings in your project a little easier. e.g. 'find_bad_encodings .'
 
+It basically iterates over the regular 'ruby' files it can find and tries each line for 'valid_encoding' and then returns a list of all lines that failed.
+
 Installation
 =======
 
@@ -34,7 +36,9 @@ Known Bugs
 None. (well actually the detection of ruby encoding is pretty simple and probably not 100% accurate, certainly works for everything I've tried it on... patches welcome.)
 
 
-Follow me on:  
+Follow me on:
+-------
+
 >  Twitter: [twitter.com/adamsalter](http://twitter.com/adamsalter)  
 >  Github: [github.com/adamsalter](http://github.com/adamsalter)
 
