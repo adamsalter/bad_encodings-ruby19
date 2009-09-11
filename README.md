@@ -10,7 +10,7 @@ Installation
 
 Install gem as normal
 
-    gem install adamsalter-bad_encodings-ruby19
+    gem install bad_encodings-ruby19 --source=http://gemcutter.org
 
 
 Usage
