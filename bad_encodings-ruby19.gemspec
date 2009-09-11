@@ -5,20 +5,20 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bad_encodings-ruby19}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Salter"]
-  s.date = %q{2009-09-10}
+  s.date = %q{2009-09-11}
   s.default_executable = %q{find_bad_encodings}
   s.description = %q{Small gem that tries to make the task of finding bad ruby encodings in your project a little easier.}
   s.email = %q{adam@codebright.net}
   s.executables = ["find_bad_encodings"]
   s.extra_rdoc_files = [
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
-    "README.rdoc",
+    "README.md",
      "Rakefile",
      "VERSION.yml",
      "bad_encodings-ruby19.gemspec",
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "tasks/gemspec.rake",
      "test/bad_encodings/bad1.rb",
      "test/bad_encodings/bad2.rb",
+     "test/bad_encodings/bad3.rb",
      "test/bad_encodings/ok.rb",
      "test/bad_encodings/ok.yml",
      "test/bad_encodings_test.rb",
@@ -41,6 +42,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "test/bad_encodings/bad1.rb",
      "test/bad_encodings/bad2.rb",
+     "test/bad_encodings/bad3.rb",
      "test/bad_encodings/ok.rb",
      "test/bad_encodings_test.rb",
      "test/test_helper.rb"
