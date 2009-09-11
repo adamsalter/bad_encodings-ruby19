@@ -16,7 +16,7 @@ class BadEncodings
           files << path
         end
       end
-      find_lines_in_files(files)
+      find_lines_in_files(files.reverse)
     end
     
     def find_lines_in_files(files)
@@ -29,9 +29,16 @@ class BadEncodings
     
     def find_lines_in_file(file)
       bad_lines = []
-      file_encoding = get_rb_file_encoding(file)
-      file = File.open(file, "r:#{file_encoding}")
+      file = File.open(file, "r:US-ASCII")
       file.each_line do |line|
+        begin
+          if (file.lineno == 1 || file.lineno == 2) && line =~ /^#.*coding:\s([\w-]+)/
+            file.set_encoding($1)
+          end
+        rescue ArgumentError
+          # regex match will fail with 'invalid byte sequence in US-ASCII'
+          # if invalid byte sequence on first line of file
+        end
         next if line.valid_encoding?
         bad_lines << [file.path, file.lineno]
       end
