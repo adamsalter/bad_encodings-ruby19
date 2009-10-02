@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bad_encodings-ruby19}
-  s.version = "0.1.2"
+  s.version = "1.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Salter"]
-  s.date = %q{2009-09-11}
+  s.date = %q{2009-10-02}
   s.default_executable = %q{find_bad_encodings}
   s.description = %q{Small gem that tries to make the task of finding bad ruby encodings in your project a little easier.}
   s.email = %q{adam@codebright.net}
@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{Small gem that tries to make the task of finding bad ruby encodings in your project a little easier.}
+  s.summary = %q{Finding bad ruby 1.9 encodings in your project.}
   s.test_files = [
     "test/bad_encodings/bad1.rb",
      "test/bad_encodings/bad2.rb",
@@ -53,14 +53,14 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<optiflag>, ["~> 0.6.5"])
+      s.add_runtime_dependency(%q<clip>, [">= 1.0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
     else
-      s.add_dependency(%q<optiflag>, ["~> 0.6.5"])
+      s.add_dependency(%q<clip>, [">= 1.0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
     end
   else
-    s.add_dependency(%q<optiflag>, ["~> 0.6.5"])
+    s.add_dependency(%q<clip>, [">= 1.0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
   end
 end
