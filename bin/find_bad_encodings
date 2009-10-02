@@ -1,20 +1,33 @@
 #!/usr/bin/env ruby
-require 'fileutils'
+require 'clip'
 require 'bad_encodings'
 
-if ARGV[0] && File.exists?(ARGV[0])
-  dir = ARGV[0]
+options = Clip do |p|
+  p.optional 'e', 'file-extensions', :desc => %Q{Set file extensions to search (comma-separated). E.g. 'rb,yml'. To search all files, just pass a comma ','}, :multi => true, :default => "rb,rake,haml,sass,erb"
+  p.flag 'v', 'verbose', :desc => 'Make it chatty.'
+end
+
+if options.valid? && !options.remainder.empty?
+  ENV['VERBOSE'] = 'true' if options.verbose?
+  paths = []
+  options.remainder.each do |dir|
+    paths << [File.expand_path(dir), dir] if File.exists?(dir)
+  end
 else
-  raise ArgumentError, "must supply a directory"
+  $stderr.puts "find_bad_encodings dir1 [dir2 ...] [options]\n" + options.to_s
+  exit
 end
 
 raise ArgumentError, "Requires Ruby 1.9" unless RUBY_VERSION > '1.9'
-dir = File.expand_path(dir)
-bad_lines = BadEncodings.find_lines_in_path(dir)
+
+bad_lines = []
+paths.each do |path|
+  bad_lines += BadEncodings.find_lines_in_path(path[0], options.file_extensions).map! {|bl| [bl[0].sub(path[0],path[1]), bl[1]] }
+end
 unless bad_lines.empty?
   puts 'The following bad encodings were found:'
   bad_lines.each do |line|
-    puts "[%s:%d]" % [line[0].sub(dir,ARGV[0]), line[1]]
+    puts "[%s:%d]" % [line[0], line[1]]
   end
 else
   puts 'No bad encodings found'

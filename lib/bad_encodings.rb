@@ -2,8 +2,8 @@ require 'find'
 
 class BadEncodings
   class << self
-    def find_lines_in_path(dir, includes = nil, dir_excludes = nil)
-      includes ||= /(\.rb|\.rake|\.haml|\.sass|\.erb)$/
+    def find_lines_in_path(dir, file_extensions = ["rb|rake|haml|sass|erb"], dir_excludes = nil)
+      regex = /#{file_extensions.join('|')}$/
       files = []
       Find.find(dir) do |path|
         if FileTest.directory?(path)
@@ -12,7 +12,7 @@ class BadEncodings
           else
             next
           end
-        elsif path =~ includes
+        elsif path =~ regex
           files << path
         end
       end
@@ -28,6 +28,7 @@ class BadEncodings
     end
     
     def find_lines_in_file(file)
+      puts "#{file}" if ENV['VERBOSE']
       bad_lines = []
       file = File.open(file, "r:US-ASCII")
       file.each_line do |line|
@@ -40,6 +41,7 @@ class BadEncodings
           # if invalid byte sequence on first line of file
         end
         next if line.valid_encoding?
+        puts "Bad encoding found: line #{file.lineno}" if ENV['VERBOSE']
         bad_lines << [file.path, file.lineno]
       end
       bad_lines
